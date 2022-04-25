@@ -7,7 +7,7 @@ Bootstrap
 JavaScript
 Vue.js
 ```
-## to run fake api
+## to run fake api (used all CRUD operation)
 ```
 json-server --watch infoStarbucks.json    
 ```
