@@ -1,5 +1,21 @@
 # starbucks
 
+## Technologies:
+```
+HTML
+Bootstrap
+JavaScript
+Vue.js
+```
+## to run fake api
+```
+json-server --watch infoStarbucks.json    
+```
+## to run project in visual studio code
+```
+npm run serve     
+```
+
 ## Project setup
 ```
 npm install
