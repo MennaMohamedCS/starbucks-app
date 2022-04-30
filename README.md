@@ -3,7 +3,7 @@
 ## Technologies:
 ```
 HTML
-Bootstrap
+Bootstrap (CSS)
 JavaScript
 Vue.js
 ```
