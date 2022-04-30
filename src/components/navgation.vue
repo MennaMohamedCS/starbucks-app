@@ -17,7 +17,11 @@
                 <li class="nav-item">
                 <router-link  class="nav-link active" aria-current="page" to="/create">Creation</router-link >
                 </li>
-
+                <li class="nav-item " >
+                <router-link  class="nav-link active" aria-current="page" to="/cart">
+                    <img src="../assets/icons8-shopping-cart-promotion-50.png" alt="cart" width="30">
+                </router-link >
+                </li>
 
             </ul>
             

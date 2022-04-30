@@ -6,8 +6,10 @@ import {createRouter,createWebHistory} from 'vue-router';
 import homeComp from './components/home.vue';
 import itemsComp from './components/items.vue';
 import createComp from './components/creat.vue';
+import cartComp from './components/cart.vue';
 import detailsComp from './components/details.vue';
 import notfoundComp from './components/navgation.vue' ;
+import confirmComp from './components/confirm.vue'
 
 import axios  from 'axios';
 
@@ -29,6 +31,14 @@ const routes = [
         component:createComp
     },
     {
+        path:'/cart',
+        component:cartComp
+    },
+    {
+        path:'/confirm',
+        component:confirmComp
+    },
+    {
         path:'/details/:id',
         component:detailsComp,
         props:true
@@ -45,6 +55,6 @@ axios.defaults.baseURL='http://localhost:3000/'
 const router = createRouter({
     history:createWebHistory(),
     routes
-})
+});
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount('#app');
