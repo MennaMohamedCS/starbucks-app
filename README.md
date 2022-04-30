@@ -1,6 +1,11 @@
 # starbucks
 
-
+## Technologies:
+```
+HTML
+Bootstrap 
+JavaScript
+Vue.js
 ```
 ## to run fake api (using all CRUD operations)
 ```
