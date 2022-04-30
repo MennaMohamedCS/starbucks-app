@@ -6,7 +6,7 @@
             <div class="card-body-auto">
                 <textarea class="card-title col-12"  v-model="this.name"></textarea>
                 <textarea class="card-title col-12" type="text" cols=45 v-model="this.description"></textarea>
-                <a href="#" class="btn btn-success px-5 mx-5" style="background-color:#1B5E20"  @click="update()">Update</a>
+                <a href="#" class="btn btn-success px-5 mx-5" style="background-color:#1B50E20"  @click="update()">Update</a>
             </div>
             </div>
         </div>
