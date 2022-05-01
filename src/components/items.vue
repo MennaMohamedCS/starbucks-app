@@ -6,15 +6,25 @@
             <img style="width: 50%;" v-bind:src=item.photo class="card-img m-auto" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
-                <h3 class="card-title">{{item.price}} $</h3>
-                <h3 class="card-title">{{quantityCart}}
-                    <img src="../assets/icons8-add-30.png" alt="Add" class="px-2" v-on:click="additem(item.id)">
-                </h3> 
-
-                <button class="btn btn-success px-5 mx-5 " style="background-color:#1B5E20" v-on:click="createItem(item.id)">Add to cart</button> 
+                <h3 class="card-title ">{{item.price}} $</h3>
+                <div v-if="item.quantity>0">
+                    <img src="../assets/icons8-minus-30.png" alt="Minus" class="px-2 " v-on:click="minusitem(item.id)">
+                    <h3 class="card-title d-inline">{{quantityCart}} </h3> 
+                    <img src="../assets/icons8-add-30.png" alt="Add" class="px-2 " v-on:click="additem(item.id)">
+                </div>
+                <div v-else>
+                    <h3 class="card-title " style="color:#1B5E20">Sold out</h3>
+                </div>
+                
+            <div>
+                <div v-if="item.quantity>0" class="d-inline">
+                     <button class="btn btn-success px-5 mx-5 " style="background-color:#1B5E20" v-on:click="createItem(item.id)">Add to cart</button> 
+                </div>
+                
                 <router-link class="btn btn-success px-5 mx-5" style="background-color:#1B5E20" :to="`/details/${item.id}`">see more</router-link>
             </div>
-            </div>
+         </div>
+        </div>
 
         </div>
     </div>
@@ -71,9 +81,27 @@ import axios from "axios";
             },
 
             additem(id) { 
-                this.quantityCart++;
-                this.total=this.quantityCart * (this.items[id-1].price)
-                //console.log(this.total);
+                if(this.quantityCart<this.items[id-1].quantity)
+                {
+                    this.quantityCart++;
+                    this.total=this.quantityCart * (this.items[id-1].price);
+                    //console.log(this.total);
+                }
+                else
+                {
+                    
+                    alert(`available ${this.quantityCart} items only`)
+
+                }
+                
+            },
+            minusitem(id) { 
+                if(this.quantityCart>1)
+                {
+                    this.quantityCart--;
+                    this.total=this.quantityCart * (this.items[id-1].price)
+                }
+                
             },
 
     }

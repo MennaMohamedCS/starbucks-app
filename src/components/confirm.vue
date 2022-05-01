@@ -49,21 +49,21 @@
 
                 for(let i=0 ;i< this.itemsCart.length ;i++)
                 {
-                    let updateQuantity=0;
-                    if(this.items[this.itemsCart[i].idProduct-1].quantity >= this.itemsCart[i].quantity)
-                        updateQuantity=this.items[this.itemsCart[i].idProduct-1].quantity - this.itemsCart[i].quantity;
+                    //let updateQuantity=0;
+                    //if(this.items[this.itemsCart[i].idProduct-1].quantity >= this.itemsCart[i].quantity)
+                    //updateQuantity=this.items[this.itemsCart[i].idProduct-1].quantity - this.itemsCart[i].quantity;
                    
-                    else{
+                   /* else{
                         updateQuantity=0;
                             this.itemsCart[i].quantity=this.items[this.itemsCart[i].idProduct-1].quantity;
                             this.itemsCart[i].total = this.items[this.itemsCart[i].idProduct-1].quantity*this.itemsCart[i].price;     
-                       }
+                       }*/
                     await axios.put("/Starbucks/"+this.itemsCart[i].idProduct,{
                         
                         name: this.itemsCart[i].name ,
                         description: this.itemsCart[i].description,
                         photo: this.itemsCart[i].photo,
-                        quantity:updateQuantity,
+                        quantity: this.items[this.itemsCart[i].idProduct-1].quantity - this.itemsCart[i].quantity,
                         price: this.itemsCart[i].price,
                     }).then(()=>console.log("Done Update"))
                     .catch(()=>console.log("err"));
