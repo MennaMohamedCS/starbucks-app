@@ -36,14 +36,14 @@
       "id": 5,
       "name": "Nitro Cold Brew",
       "description": "Super-smooth Nitro Cold Brew finished with a splash of house-made vanilla sweet cream.",
-      "photo": "https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-77136.jpg",
+      "photo": "https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-77135.jpg",
       "quantity": 5,
       "price": 10
     },
     {
       "name": "Vanilla Sweet Cream Nitro Cold Brew",
       "description": "Layers of savory ingredients on our signature croissant bun.",
-      "photo": "https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-77140.jpg",
+      "photo": "https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-77136.jpg",
       "quantity": 3,
       "price": 35,
       "id": 6

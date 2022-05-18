@@ -8,7 +8,7 @@
                 <h5 class="card-title">{{item.name}}</h5>
                 <h3 class="card-title ">{{item.price}} $</h3>
                 <div v-if="item.quantity>0">
-                    <img src="../assets/icons8-minus-30.png" alt="Minus" class="px-2 " v-on:click="minusitem(item.id)">
+                    <img src="../assets/icons8-minus-30.png" alt="Minus" class="px-2 " v-on:click="minusitem()">
                     <h3 class="card-title d-inline">{{quantityCart}} </h3> 
                     <img src="../assets/icons8-add-30.png" alt="Add" class="px-2 " v-on:click="additem(item.id)">
                 </div>
@@ -38,7 +38,9 @@ import axios from "axios";
         data() {
             return {
                 items: [],
+                itemsCart: [],
                 quantityCart:1,
+                flag: false,
                 total:0,
             };
         },
@@ -49,7 +51,7 @@ import axios from "axios";
          methods: {
             getItems() {
                  axios.get("Starbucks").then((res) => {
-                    console.log(res.data);
+                    //console.log(res.data);
                     this.items = res.data;
                  })
                 .catch((err) => {
@@ -57,51 +59,52 @@ import axios from "axios";
                 });
              },
 
-            createItem(id) { 
+             async createItem(id) { 
                 const index=id-1;
-                if(this.total===0)
-                    this.total=this.items[index].price;
-                axios.post("Cart", {
-                    name: this.items[index].name,
-                    description: this.items[index].description,
-                    price: this.items[index].price,
-                    photo: this.items[index].photo,
-                    idProduct:id,
-                    quantity:this.quantityCart,
-                    total:this.total,
 
-                }).then((res) => {
-                    console.log(res.data);
-                    alert("Done Add");
-                }).catch((err) => {
+                await axios.get("Cart").then((res) => {
+                    this.itemsCart = res.data;
+                 })
+                .catch((err) => {
                     console.log(err);
                 });
-                this.quantityCart=1;
-                this.total=0;
+
+                this.flag =this.itemsCart.find((currentVal)=>{
+                    return currentVal.idProduct===id;
+                })
+                if(!this.flag)
+                {
+                    axios.post("Cart", {
+                        name: this.items[index].name,
+                        description: this.items[index].description,
+                        price: this.items[index].price,
+                        photo: this.items[index].photo,
+                        idProduct:id,
+                        quantity:this.quantityCart,
+                        total:this.quantityCart * this.items[index].price,
+
+                    }).then(() => {
+                        alert("Done Add");
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                    this.quantityCart=1;
+                }
+                else{
+                    alert("you are already added this item");
+                }
             },
 
             additem(id) { 
                 if(this.quantityCart<this.items[id-1].quantity)
-                {
                     this.quantityCart++;
-                    this.total=this.quantityCart * (this.items[id-1].price);
-                    //console.log(this.total);
-                }
-                else
-                {
-                    
+                else   
                     alert(`available ${this.quantityCart} items only`)
-
-                }
                 
             },
-            minusitem(id) { 
+            minusitem() { 
                 if(this.quantityCart>1)
-                {
-                    this.quantityCart--;
-                    this.total=this.quantityCart * (this.items[id-1].price)
-                }
-                
+                    this.quantityCart--;   
             },
 
     }
